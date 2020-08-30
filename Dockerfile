@@ -1,12 +1,19 @@
-FROM marhan/rpi-java8
-MAINTAINER Rui Figueiredo <rui.figueiredo@gmail.com>
+FROM balenalib/raspberry-pi-openjdk:8-stretch
+MAINTAINER Mohammad Javed <ghazanfar9131@gmail.com>
 
 WORKDIR /data
-RUN wget https://downloads.jboss.org/keycloak/4.8.1.Final/keycloak-4.8.1.Final.tar.gz \
-      && tar xvfp keycloak-4.8.1.Final.tar.gz \
-      && rm keycloak-4.8.1.Final.tar.gz
 
-COPY config/keycloak-add-user.json /data/keycloak-4.8.1.Final/standalone/configuration/keycloak-add-user.json
+RUN apt update
 
-CMD ["/data/keycloak-4.8.1.Final/bin/standalone.sh", "-b", "0.0.0.0"]
+RUN apt install wget
+
+RUN wget https://downloads.jboss.org/keycloak/11.0.1/keycloak-11.0.1.tar.gz \
+      && tar xvfp keycloak-11.0.1.tar.gz \
+      && rm keycloak-11.0.1.tar.gz
+
+
+RUN /data/keycloak-11.0.1/bin/add-user-keycloak.sh -r master -u admin -p admin
+
+CMD ["/data/keycloak-11.0.1/bin/standalone.sh", "-b", "0.0.0.0"]
+
 EXPOSE 8080 9990
