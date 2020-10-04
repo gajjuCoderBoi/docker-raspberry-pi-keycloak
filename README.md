@@ -40,7 +40,7 @@ docker pull your-registry-address:5000/raspberry-pi-keycloak
 
 ### Run Details
 ```
-docker run --name keycloak --privileged -d -p 8180:8080 -p 9990:9990 gajjuCoderBoi/docker-rpi-keycloak
+docker run --name keycloak --privileged -d -p 8180:8080 -p 9990:9990 ghazanfar9131/raspberry-pi-keycloak
 ```
 
 ![Keycloak Welcome ScreeShot](https://raw.githubusercontent.com/gajjuCoderBoi/docker-rpi-keycloak/master/imagens/keycloak_welcomepage.png)
